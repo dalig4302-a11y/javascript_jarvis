@@ -1,3 +1,40 @@
+// Initialize Vercel Speed Insights
+(function() {
+    // Speed Insights initialization
+    const initQueue = () => {
+        if (window.si) return;
+        window.si = function(...params) {
+            window.siq = window.siq || [];
+            window.siq.push(params);
+        };
+    };
+    
+    const injectSpeedInsights = () => {
+        if (typeof window === 'undefined') return;
+        
+        initQueue();
+        
+        const script = document.createElement('script');
+        script.src = '/_vercel/speed-insights/script.js';
+        script.defer = true;
+        script.dataset.sdkn = '@vercel/speed-insights';
+        script.dataset.sdkv = '2.0.0';
+        
+        script.onerror = () => {
+            console.log('[Vercel Speed Insights] Failed to load script. Please check if deployed on Vercel.');
+        };
+        
+        document.head.appendChild(script);
+    };
+    
+    // Inject Speed Insights on page load
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', injectSpeedInsights);
+    } else {
+        injectSpeedInsights();
+    }
+})();
+
 const btn = document.querySelector('.talk')
 const content = document.querySelector('.content')
 

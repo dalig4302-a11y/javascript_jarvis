@@ -1,0 +1,20 @@
+# Dependencies
+node_modules/
+
+# npm
+package-lock.json.bak
+npm-debug.log*
+
+# Build outputs
+dist/
+build/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
